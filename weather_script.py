@@ -10,6 +10,8 @@ def load_env():
 load_env()
 # Get API key and city from environment variables
 API_KEY = os.getenv('WEATHER_API_KEY')
+if not API_KEY:
+    raise ValueError("WEATHER_API_KEY environment variable not set. Please set it in your .env file.")
 CITY = 'Dublin'
 # Define the base URL for the OpenWeatherMap API
 BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
@@ -23,9 +25,7 @@ def get_weather_data(city, api_key):
     if response.status_code == 200:
         # Parse the JSON response
         data = response.json()
-        return data
-    else:
-        print("Error fetching weather data")
+        print(f"Error fetching weather data: {response.status_code} - {response.text}")
         return None
 # Function to display weather information
 def display_weather(data):
