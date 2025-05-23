@@ -4,10 +4,13 @@ import json
 import os
 from dotenv import load_dotenv
 # Load environment variables from .env file
-load_dotenv()
+def load_env():
+    load_dotenv()
+
+load_env()
 # Get API key and city from environment variables
-API_KEY = os.getenv('API_KEY')
-CITY = os.getenv('CITY')
+API_KEY = os.getenv('WEATHER_API_KEY')
+CITY = 'Dublin'
 # Define the base URL for the OpenWeatherMap API
 BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
 # Function to fetch weather data
